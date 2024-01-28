@@ -2,6 +2,33 @@
 
 {% block content %}
 
-<h1>Hello World!</h1>
+<div class = "col-md-6 offset-md-3">
+
+{% if user.is_authenticated %}
+
+<h1>Hello User</h1>
+
+{% else %}
+
+<h1>Schwab Login</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <form>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="username", placeholder="Username" required>
+        </div>
+        <br/>
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password", placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-secondary">Submit</button>
+      </form>
+</form>
+
+</div>
+
+{% endif %}
 
 {% endblock %}
